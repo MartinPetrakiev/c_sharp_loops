@@ -16,16 +16,16 @@ namespace MyProject
             for (int k = 1; k <= 2 * n; k++)
             {
                 fact2N *= (BigInteger)k;
-            }
 
-            for (int j = 1; j <= n; j++)
-            {
-                factN *= (BigInteger)j;
-            }
+                if (k <= n)
+                {
+                    factN *= (BigInteger)k;
+                }
 
-            for (int x = 1; x <= n + 1; x++)
-            {
-                factNPlusOne *= (BigInteger)x;
+                if (k <= n + 1)
+                {
+                    factNPlusOne *= (BigInteger)k;
+                }
             }
 
             catalan = (BigInteger)fact2N / (factNPlusOne * factN);
