@@ -4,30 +4,26 @@ namespace MyProject
 {
     class Program
     {
-        static int CalculateGreatestCommonDivisorOfTwo(string input)
+        static int CalculateGreatestCommonDivisorOfTwo(int a, int b)
         {
-            string[] numbersArray = input.Split(' ');
-            int a = int.Parse(numbersArray[0].ToString());
-            int b = int.Parse(numbersArray[1].ToString());
-            int biggestNumber = a - b >= 0 ? a : b;
-            int greatestCommonDevisor = 1;
-
-            for (int i = 1; i <= biggestNumber; i++)
+            while (b != 0)
             {
-                if (a % i == 0 && b % i == 0)
-                {
-                    greatestCommonDevisor = i;
-                }
+                var swapVar = b;
+                b = a % b;
+                a = swapVar;
             }
 
-            return greatestCommonDevisor;
+            return a;
         }
+
         static void Main(string[] args)
         {
-            string input = Console.ReadLine()!;
+            string[] inputNumbers = Console.ReadLine()!.Split(' ');
 
+            int a = int.Parse(inputNumbers[0].ToString());
+            int b = int.Parse(inputNumbers[1].ToString());
 
-            Console.WriteLine(CalculateGreatestCommonDivisorOfTwo(input));
+            Console.WriteLine(CalculateGreatestCommonDivisorOfTwo(a, b));
         }
     }
 }

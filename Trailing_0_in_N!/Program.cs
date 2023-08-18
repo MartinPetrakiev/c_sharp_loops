@@ -1,46 +1,25 @@
 ﻿using System;
-using System.Numerics;
 
 namespace MyProject
 {
     class Program
     {
-        static int OutputTrailingZeroes(string input)
+        static int OutputTrailingZeroes(int n)
         {
-            char[] factDigitsArray = input.ToCharArray();
             int countZeroes = 0;
 
-            for (int i = factDigitsArray.Length - 1; i > -1; i--)
+            for (int i = 5; n / i >= 1; i *= 5)
             {
-                if (factDigitsArray[i].ToString() == "0")
-                {
-                    countZeroes++;
-                }
-                else
-                {
-                    break;
-                }
+                countZeroes += n / i;
             }
             return countZeroes;
         }
 
-        static string FactorialOfNString(int input)
-        {
-            BigInteger factNumber = new BigInteger(1);
-
-            for (int i = 1; i <= input; i++)
-            {
-                factNumber *= (BigInteger)i;
-            }
-
-            return factNumber.ToString();
-        }
         static void Main(string[] args)
         {
-            int inputInteger = int.Parse(Console.ReadLine()!);
+            int n = Convert.ToInt32(Console.ReadLine());
 
-            
-            Console.WriteLine(OutputTrailingZeroes(FactorialOfNString(inputInteger)));
+            Console.WriteLine(OutputTrailingZeroes(n));
         }
     }
 }

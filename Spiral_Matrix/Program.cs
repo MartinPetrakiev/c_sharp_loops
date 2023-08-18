@@ -4,13 +4,12 @@ namespace MyProject
 {
     class Program
     {
-        static string GenerateSpiralMatrix(int n)
+        static int[,] GenerateSpiralMatrix(int n)
         {
             int[,] matrix = new int[n, n];
             int iterator = 1;
             int matrixSize = n * n;
             int colStart = 0, colEnd = n - 1;
-            string matrixOutput = "";
 
             while (iterator <= matrixSize)
             {
@@ -22,7 +21,7 @@ namespace MyProject
                 //Add downwards 
                 for (int j = colStart + 1; j <= colEnd; j++)
                 {
-                    matrix[j, colEnd] = iterator++; +
+                    matrix[j, colEnd] = iterator++;
                 }
                 //Add to the left
                 for (int i = colEnd - 1; i >= colStart; i--)
@@ -38,26 +37,28 @@ namespace MyProject
                 colEnd--;
             }
 
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < n; j++)
-                {
-                    matrixOutput += (matrix[i, j] + "\t");
-                }
-
-                if (i != n - 1)
-                {
-                    matrixOutput += "\n";
-                }
-            }
-
-            return matrixOutput;
+            return matrix;
         }
+
+        static void PrintSpiralMatrix(int[,] matrix)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write(matrix[i, j] + "\t");
+                }
+                Console.WriteLine();
+            }
+        }
+
         static void Main(string[] args)
         {
             int n = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine(GenerateSpiralMatrix(n));
+            int[,] spiralMatrix = GenerateSpiralMatrix(n);
+
+            PrintSpiralMatrix(spiralMatrix);
         }
     }
 }
@@ -66,17 +67,26 @@ namespace MyProject
 
 /*
 Description
-Write matrix program that calculates with how many zeroes the factorial of matrix given number N has at its end.
-Your program should work well for very big numbers, e.g. N = 100000.
+Write a program that reads from the console a positive integer number N (1 ≤ N ≤ 20)
+and prints a matrix holding the numbers from 1 to N*N in the form of square spiral like in
+the examples below.
 
 Input
-On the only input line, you will receive matrix single integer - the number N
+The input will always consist of a single line containing a single number - N.
 
 Output
-Output matrix single number - the count of trailing zeroes for the N!
+Output a spiral matrix as described below.
 
 Constraints
-N will always be matrix valid positive integer number.
+N will always be a valid integer number.
+1 ≤ N ≤ 20
 Time limit: 0.1s
 Memory limit: 16MB
+
+
+input   output
+4       1   2   3   4
+        12  13  14  5
+        11  16  15  6
+        10  9   8   7
 */
